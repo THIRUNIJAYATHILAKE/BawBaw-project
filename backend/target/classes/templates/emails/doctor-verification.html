@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .header {
+            text-align: center;
+            padding: 20px 0;
+            border-bottom: 2px solid #ffc107;
+        }
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #ffc107;
+        }
+        .content {
+            padding: 30px 0;
+        }
+        .greeting {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .message {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+        .status-box {
+            padding: 20px;
+            border-radius: 6px;
+            margin: 30px 0;
+            text-align: center;
+        }
+        .status-approved {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+        }
+        .status-pending {
+            background: linear-gradient(135deg, #ffc107 0%, #ff9800 100%);
+            color: white;
+        }
+        .status-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        .status-message {
+            font-size: 14px;
+            margin-top: 10px;
+            opacity: 0.95;
+        }
+        .details-box {
+            background-color: #f8f9fa;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 20px 0;
+        }
+        .footer {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            font-size: 12px;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">👨‍⚕️ Doctor Verification</div>
+        </div>
+        
+        <div class="content">
+            <p class="greeting">Hello Dr. {{DOCTOR_NAME}},</p>
+            
+            {{#IS_APPROVED}}
+            <div class="status-box status-approved">
+                <div class="status-title">✅ Account Approved!</div>
+                <div class="status-message">
+                    Congratulations! Your doctor profile has been verified and approved.
+                </div>
+            </div>
+            
+            <p class="message">
+                Your doctor account is now active and ready to use. You can start accepting appointments 
+                from pet owners in your area. Your clinic information and qualifications have been verified 
+                by our team.
+            </p>
+            {{/IS_APPROVED}}
+            
+            {{^IS_APPROVED}}
+            <div class="status-box status-pending">
+                <div class="status-title">⏳ Under Review</div>
+                <div class="status-message">
+                    Your profile is being reviewed by our team
+                </div>
+            </div>
+            
+            <p class="message">
+                Thank you for your submission! Your doctor profile is currently under review. 
+                Our team is verifying your credentials and qualifications. 
+                We'll notify you as soon as the review is complete.
+            </p>
+            {{/IS_APPROVED}}
+            
+            {{#MESSAGE}}
+            <div class="details-box">
+                <strong>Message from Admin:</strong><br><br>
+                {{MESSAGE}}
+            </div>
+            {{/MESSAGE}}
+            
+            <p class="message">
+                If you have any questions or need to update your profile information, 
+                please contact our support team through the PetVax Care admin portal.
+            </p>
+        </div>
+        
+        <div class="footer">
+            <p>© 2024 PetVax Care. All rights reserved.</p>
+            <p>This is an automated message. Please do not reply to this email.</p>
+        </div>
+    </div>
+</body>
+</html>

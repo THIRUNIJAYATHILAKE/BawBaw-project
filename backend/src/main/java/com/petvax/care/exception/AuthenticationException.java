@@ -1,0 +1,39 @@
+package com.petvax.care.exception;
+
+public class AuthenticationException extends RuntimeException {
+    
+    private final String errorCode;
+    private final int statusCode;
+    
+    public AuthenticationException(String message) {
+        super(message);
+        this.errorCode = "AUTH_ERROR";
+        this.statusCode = 401;
+    }
+    
+    public AuthenticationException(String message, String errorCode) {
+        super(message);
+        this.errorCode = errorCode;
+        this.statusCode = 401;
+    }
+    
+    public AuthenticationException(String message, String errorCode, int statusCode) {
+        super(message);
+        this.errorCode = errorCode;
+        this.statusCode = statusCode;
+    }
+    
+    public AuthenticationException(String message, Throwable cause) {
+        super(message, cause);
+        this.errorCode = "AUTH_ERROR";
+        this.statusCode = 401;
+    }
+    
+    public String getErrorCode() {
+        return errorCode;
+    }
+    
+    public int getStatusCode() {
+        return statusCode;
+    }
+}

@@ -1,0 +1,70 @@
+spring:
+  application:
+    name: petvax-care
+  jpa:
+    hibernate:
+      ddl-auto: update  # Changed from 'validate' to 'update'
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+        use_sql_comments: true
+    show-sql: false
+  datasource:
+    url: jdbc:postgresql://localhost:5432/petvax_care
+    username: petvax_user
+    password: petvax_password
+    driver-class-name: org.postgresql.Driver
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    baseline-on-migrate: true
+  security:
+    user:
+      name: admin
+      password: admin123
+  # mail:
+  #   host: ${MAIL_HOST:smtp.gmail.com}
+  #   port: ${MAIL_PORT:587}
+  #   username: ${tharuthirunjrs0001@gmail.com}
+  #   password: ${26180110Tr&@}
+  #   protocol: smtp
+  #   properties:
+  #     mail:
+  #       smtp:
+  #         auth: true
+  #         starttls:
+  #           enable: true
+  #           required: true
+  #         connectiontimeout: 5000
+  #         timeout: 5000
+  #         writetimeout: 5000
+
+server:
+  port: 8080
+  servlet:
+    context-path: /api
+  error:
+    include-message: always
+    include-binding-errors: always
+
+app:
+  jwt:
+    secret: ${JWT_SECRET:ThisIsAVeryLongSecretKeyForJWTThatShouldBeAtLeast256BitsForHS256Algorithm}
+    access-token-expiration-ms: 86400000 # 24 hours
+    refresh-token-expiration-ms: 2592000000 # 30 days
+  cors:
+    allowed-origins: ${CORS_ORIGINS:http://localhost:3000,http://localhost:8081}
+  # firebase:
+  #   credentials-path: ${FIREBASE_CREDENTIALS_PATH}
+  # email:
+  #   display-name: ${EMAIL_DISPLAY_NAME:PetVax Care}
+  #   async:
+  #     enabled: ${EMAIL_ASYNC_ENABLED:true}
+
+logging:
+  level:
+    root: INFO
+    com.petvax.care: DEBUG
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
